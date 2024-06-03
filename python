@@ -1,0 +1,14 @@
+# Example of a recipe recommender system in Python
+import sqlite3
+
+def recommend_recipe(ingredient):
+    conn = sqlite3.connect('recipes.db')
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM recipes WHERE ingredient='{ingredient}'")
+    recipes = cursor.fetchall()
+    conn.close()
+    return recipes
+
+ingredient = 'chicken'
+recommended_recipes = recommend_recipe(ingredient)
+print(recommended_recipes)
